@@ -1,42 +1,68 @@
 #include <iostream>
 #include <iomanip>
+#include <string>
 
 using namespace std;
 
 struct Debt {
 
-  // initial var
-  double iDebt;
-  int iTime;
-  double iPer;
+  // initial vars
+  float iDebt;
+  float iTime;
+  float iPer;
   // table vars
-  double mFee;
-  double mPer;
-  double mPaid;
-  double mDebt;
-  double mXPay;
-  double mTotalDebt;
+  float mFee;
+  float mPer;
+  float mPaid;
+  float mDebt;
+  float mXPay;
+  float mTotalDebt;
+
+  // methods
+    // table format
+    void addCol (int w, string d) {
+      cout << setw(w) << d << " |";
+    }
+
+    void addCol (int w, float value){
+      cout << setw(w) << value << " |";
+    }
 };
 
 int main() {
   // Ask the user for the debt amount, months to pay, and interest percentage.
-  Debt debt;
+  Debt d;
+  d.iDebt = 400;
+  d.iTime = 4;
+  d.iPer = 4;
+  /*
   cout << "Enter the debt amount: ";
-  cin >> debt.iDebt;
+  cin >> d.iDebt;
   cout << "Enter the number of months to pay: ";
-  cin >> debt.iTime;
+  cin >> d.iTime;
   cout << "Enter the interest percentage: ";
-  cin >> debt.iPer;
-
+  cin >> d.iPer;
+  */
   // Calculate the monthly payment.
-  debt.mFee = debt.iDebt / debt.iTime;
+  d.mFee = d.iDebt / d.iTime;
+  d.mPer = (d.iDebt * d.iPer) / 100;
+  d.mPaid = d.mFee - d.mPer;
 
   // Create a new table to display the debt, months, and interest paid.
-  cout << setw(6) << "Months" << " | " << setw(10) << "Cuota" << " |" << endl;
-  for (int month = 1; month <= debt.iTime; month++) {
-    cout << setw(6) << month << " | " << setw(10) << debt.mFee << " |" << endl;
-    debt.iDebt -= debt.mFee;
-  }
+  
+  // header
+  d.addCol(4, "Mes");
+  d.addCol(7, "Cuota");
+  d.addCol(8, "Interes");
+  d.addCol(8, "Pagado");
+  cout << endl;
+
+  for (int month = 1; month <= d.iTime; month++) {
+    d.addCol(4, month);
+    d.addCol(7, d.mFee);
+    cout << endl;
+  } 
 
   return 0;
 }
+
