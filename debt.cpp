@@ -24,7 +24,7 @@ int main() {
   int monthlyPayment = debt.debtAmount / debt.monthsToPay;
 
   // Create a new table to display the debt, months, and interest paid.
-  cout << "| Months | Cuota |" << endl;
+  cout << "| " << setw(10) << "Months" << " | " << setw(10) << "Cuota" << " |" << endl;
   for (int month = 1; month <= debt.monthsToPay; month++) {
     cout << setw(10) << month << " | " << setw(10) << monthlyPayment << " |" << endl;
     debt.debtAmount -= monthlyPayment;
