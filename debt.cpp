@@ -23,10 +23,10 @@ int main() {
   // Calculate the monthly payment.
   int monthlyPayment = debt.debtAmount / debt.monthsToPay;
 
-  // Create a table to display the debt, months, and interest paid.
-  cout << "| Month | Monthly Fee | Interest Paid | Requested Amount Paid | Resting Debt |" << endl;
+  // Create a new table to display the debt, months, and interest paid.
+  cout << "| Months | Cuota |" << endl;
   for (int month = 1; month <= debt.monthsToPay; month++) {
-    cout << setw(10) << month << " | " << setw(10) << debt.debtAmount - debt.debtAmount * debt.interestPercentage / 100 / debt.monthsToPay << " | " << setw(10) << debt.interestPercentage * debt.debtAmount / 100 << " | " << setw(10) << monthlyPayment - debt.interestPercentage * debt.debtAmount / 100 << " | " << setw(10) << debt.debtAmount - monthlyPayment << " |" << endl;
+    cout << setw(10) << month << " | " << setw(10) << monthlyPayment << " |" << endl;
     debt.debtAmount -= monthlyPayment;
   }
 
