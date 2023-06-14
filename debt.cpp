@@ -43,10 +43,7 @@ int main() {
   cout << "Enter the interest percentage: ";
   cin >> d.iPer;
   */
-  // Calculate the monthly payment.
-  d.mFee = d.iDebt / d.iTime;
-  d.mPer = (d.iDebt * d.iPer) / 100;
-  d.mPaid = d.mFee - d.mPer;
+
 
   // Create a new table to display the debt, months, and interest paid.
   
@@ -58,8 +55,20 @@ int main() {
   cout << endl;
 
   for (int month = 1; month <= d.iTime; month++) {
+
+    // prev calculation
+    d.mFee = d.iDebt / d.iTime;
+    d.mPer = (d.iDebt * d.iPer) / 100; 
+    d.mPaid = d.mFee - d.mPer;
+
+    // columns
     d.addCol(4, month);
     d.addCol(7, d.mFee);
+    d.addCol(8, d.mPer);
+    d.addCol(8, d.mPaid);
+    
+    // post calculation
+    d.iDebt -= d.mPaid;
     cout << endl;
   } 
 
