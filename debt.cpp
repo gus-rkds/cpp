@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <math.h>
 
 using namespace std;
 
@@ -21,19 +22,23 @@ struct Debt {
   // methods
     // table format
     void addCol (int w, string d) {
-      cout << setw(w) << d << " |";
+      cout << setprecision(4) << setw(w) << d << " |";
     }
 
     void addCol (int w, float value){
-      cout << setw(w) << value << " |";
+      cout << setprecision(4) << setw(w) << value << " |";
     }
+
+  
 };
 
 int main() {
   // Ask the user for the debt amount, months to pay, and interest percentage.
   Debt d;
   d.iDebt = 400;
+  float staticDebt = d.iDebt;
   d.iTime = 4;
+  int tInt = d.iTime;
   d.iPer = 4;
   /*
   cout << "Enter the debt amount: ";
@@ -49,26 +54,33 @@ int main() {
   
   // header
   d.addCol(4, "Mes");
-  d.addCol(7, "Cuota");
+  d.addCol(8, "Cuota");
   d.addCol(8, "Interes");
   d.addCol(8, "Pagado");
+  d.addCol(9, "Restante");
+
   cout << endl;
 
   for (int month = 1; month <= d.iTime; month++) {
 
     // prev calculation
-    d.mFee = d.iDebt / d.iTime;
-    d.mPer = (d.iDebt * d.iPer) / 100; 
-    d.mPaid = d.mFee - d.mPer;
-
+    
+    d.mPer = d.iDebt * d.iPer / 100; // porcentaje para mes actual
+    d.mFee = (staticDebt * d.iPer /100) / (1 - pow (1 + d.iPer / 100, -d.iTime));
+    // d.mFee = d.mPer / (1 - pow(1 + d.iPer, d.iTime));
+    d.mPaid = d.mFee - d.mPer; // monto pagado tomando en cuenta el interes
+    d.iDebt -= d.mPaid;
+    if (d.iDebt <= 1) {
+      d.iDebt = 0;
+    } 
     // columns
     d.addCol(4, month);
-    d.addCol(7, d.mFee);
+    d.addCol(8, d.mFee);
     d.addCol(8, d.mPer);
     d.addCol(8, d.mPaid);
+    d.addCol(9, d.iDebt);
     
     // post calculation
-    d.iDebt -= d.mPaid;
     cout << endl;
   } 
 
