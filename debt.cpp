@@ -97,7 +97,7 @@ int main() {
     cout << endl;
   }
 
-  cout << endl << endl << "Para pagar la deuda se necesitaron " << d.iTime << " meses y se pago " << d.tPer << " de interes para cancelar la deuda de " << staticDebt << "$"<< endl;
+  cout << endl << endl << "Para pagar la deuda se necesitaron" << d.iTime << " meses y se pago " << d.tPer << " de interes para cancelar la deuda de " << staticDebt << "$"<< endl;
 
   return 0;
 }
