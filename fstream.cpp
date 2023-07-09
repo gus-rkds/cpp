@@ -1,37 +1,34 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
 int main() {
-  // Create a file called "myfile.txt".
-  ofstream outfile("myfile.txt");
+  // Create a file stream
+  fstream file;
 
-  // Write some text to the file.
-  outfile << "This is some text.\n";
+  // Open the file in append mode
+  file.open("test.txt", ios::out | ios::app);
 
-  // Close the file.
-  outfile.close();
+  // Write two lines to the file
+  file << "32 46" << endl;
+  file << "hola perro" << endl;
 
-  // Open the file for reading and writing.
-  fstream iofile("myfile.txt", ios::in | ios::out);
+  // Close the file
+  file.close();
 
-  // Read the contents of the file.
-  string line;
-  while (getline(iofile, line)) {
-    cout << line << endl;
-  }
+  // Reopen the file in read mode
+  file.open("test.txt", ios::in);
 
-  // Delete the first line from the file.
-  iofile.seekp(0, ios::beg);
-  iofile << "";
+  // Read the two lines from the file
+  string line1, line2;
+  getline(file, line1);
+  getline(file, line2);
 
-  // Change the second line to "This is new text."
-  iofile.seekp(10, ios::beg);
-  iofile << "This is new text.\n";
-
-  // Close the file.
-  iofile.close();
+  // Print the two lines
+  cout << line1 << endl;
+  cout << line2 << endl;
 
   return 0;
 }

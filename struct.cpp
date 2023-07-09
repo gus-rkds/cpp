@@ -2,7 +2,7 @@
 using namespace std;
 
 struct Person {
-  char *name;
+  string name;
   int age;
   float salary;
 };
