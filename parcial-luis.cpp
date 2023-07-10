@@ -7,7 +7,7 @@ using namespace std;
 void ecuaciones (int letra,float* al, float* v1, float* v2) {
   // numero random
   srand(time(NULL));
-  float aleatorio = (-11+ rand()%88);
+  float aleatorio = (11 + rand()%66);
   aleatorio = aleatorio / 10;
   float valor1 = M_PI * letra * aleatorio;
   float valor2 = (4 / 3) * M_PI * pow(aleatorio, 3) / letra;
